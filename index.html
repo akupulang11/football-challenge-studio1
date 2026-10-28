@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Football Challenge Studio</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07110d;
+      color: white;
+    }
+    header {
+      padding: 22px 18px;
+      background: #10251a;
+      border-bottom: 1px solid #24583b;
+    }
+    header h1 { margin: 0; font-size: 23px; }
+    header p { color: #a8c9b3; font-size: 13px; }
+    main { padding: 18px; max-width: 700px; margin: auto; }
+    .hero {
+      background: linear-gradient(135deg, #14532d, #0b2116);
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    .ball { font-size: 54px; }
+    h2 { margin-bottom: 8px; }
+    .muted { color: #aab9b0; font-size: 14px; }
+    .games {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .game {
+      background: #13251b;
+      border: 1px solid #294735;
+      border-radius: 14px;
+      padding: 16px 12px;
+      color: white;
+      text-align: left;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .game span {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+    button { font-family: inherit; }
+    .game:focus, .game:hover { border-color: #4ade80; }
+    .panel {
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 16px;
+      background: #13251b;
+    }
+    select, .action {
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #3d6248;
+      background: #07110d;
+      color: white;
+      font-size: 15px;
+    }
+    .action {
+      background: #22c55e;
+      color: #05210e;
+      font-weight: bold;
+      border: 0;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 15px;
+      padding: 14px;
+      text-align: center;
+      border-radius: 12px;
+      background: #203c2a;
+      min-height: 55px;
+    }
+    footer {
+      padding: 25px;
+      text-align: center;
+      color: #82988a;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚽ Football Challenge Studio</h1>
+    <p>CREATE YOUR OWN FOOTBALL CHALLENGE</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="ball">⚽</div>
+      <h2>Ready for the Challenge?</h2>
+      <p class="muted">Pilih game, mainkan tantangannya, dan uji pengetahuan sepak bolamu!</p>
+    </section>
+
+    <h2>Pilih Challenge</h2>
+    <section class="games">
+      <button class="game" onclick="choose('Puzzle Wajah')">
+        <span>🧩</span>Face Puzzle
+      </button>
+      <button class="game" onclick="choose('Tebak Pemain')">
+        <span>🕵️</span>Guess Player
+      </button>
+      <button class="game" onclick="choose('Tebak Jersey')">
+        <span>👕</span>Jersey Quiz
+      </button>
+      <button class="game" onclick="choose('Stop Challenge')">
+        <span>⏱️</span>Stop Challenge
+      </button>
+    </section>
+
+    <section class="panel">
+      <h2 id="gameTitle">🎮 Mulai Game</h2>
+      <p class="muted">Pilih pemain untuk mencoba demo challenge.</p>
+      <select id="player">
+        <option value="Cristiano Ronaldo">Cristiano Ronaldo</option>
+        <option value="Lionel Messi">Lionel Messi</option>
+        <option value="Kylian Mbappé">Kylian Mbappé</option>
+        <option value="Erling Haaland">Erling Haaland</option>
+      </select>
+      <button class="action" onclick="play()">Mulai Challenge</button>
+      <div id="result">Hasil challenge akan muncul di sini.</div>
+    </section>
+  </main>
+
+  <footer>Football Challenge Studio · Versi Demo</footer>
+
+  <script>
+    let selectedGame = "Face Puzzle";
+
+    function choose(game) {
+      selectedGame = game;
+      document.getElementById("gameTitle").textContent =
+        "🎮 " + game;
+      document.getElementById("result").textContent =
+        "Kamu memilih " + game + ". Tekan Mulai Challenge!";
+    }
+
+    function play() {
+      const player = document.getElementById("player").value;
+      const result = document.getElementById("result");
+
+      if (selectedGame === "Stop Challenge") {
+        result.innerHTML = "⏱️ STOP!<br>Bayangkan kamu menghentikan animasi pada momen yang tepat.<br><strong>" + player + "</strong>";
+      } else if (selectedGame === "Face Puzzle") {
+        result.innerHTML = "🧩 PUZZLE CHALLENGE<br>Tebak wajah pemain yang dipilih:<br><strong>" + player + "</strong>";
+      } else if (selectedGame === "Tebak Pemain") {
+        result.innerHTML = "🕵️ MYSTERY PLAYER<br>Jawaban demo: <strong>" + player + "</strong>";
+      } else {
+        result.innerHTML = "👕 JERSEY QUIZ<br>Pemain pilihanmu: <strong>" + player + "</strong>";
+      }
+    }
+  </script>
+</body>
+</html>
